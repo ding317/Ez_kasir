@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->satuanComboBox->addItem("Liter");
     ui->satuanComboBox->addItem("Kg");
     ui->satuanComboBox->addItem("Box");
+    ui->satuanComboBox->addItem("rim");
 
 
     // --- 1. SETUP MODEL DAN VIEW DATA ---
@@ -51,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // --- 2. KONEKSI SINYAL/SLOT ---
     connect(ui->saveButton, &QPushButton::clicked, this, &MainWindow::on_saveButton_clicked);
-    connect(ui->deleteButton, &QPushButton::clicked, this, &MainWindow::on_deleteButton_clicked);
+    connect(ui->delateButton, &QPushButton::clicked, this, &MainWindow::on_deleteButton_clicked);
     connect(ui->tableView, &QTableView::clicked, this, &MainWindow::on_tableView_clicked);
     connect(ui->searchNameEdit, &QLineEdit::textChanged, this, &MainWindow::on_searchNameEdit_textChanged);
     connect(ui->resetSearchButton, &QPushButton::clicked, this, &MainWindow::on_resetSearchButton_clicked);
@@ -201,7 +202,7 @@ void MainWindow::on_searchNameEdit_textChanged(const QString &text) {
     QString searchText = text.trimmed();
 
     if (searchText.isEmpty()) {
-        filter = "";
+        filter = "cari?";
     } else {
         // Filter case-insensitive
         filter = QString("nama LIKE '%%1%'").arg(searchText);
